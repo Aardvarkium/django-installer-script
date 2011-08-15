@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.5.1.tar.gz#md5=3daa1f449d5d2ee03099484cecb1c2b7
+wget http://pypi.python.org/packages/source/v/virtualenvwrapper/virtualenvwrapper-2.6.1.tar.gz#md5=91a54c14cf38454255b18bf7fba4ed09
+
+tar -zxf virtualenv-1.5.1.tar.gz
+tar -zxf virtualenvwrapper-2.6.1.tar.gz
+
+cd virtualenv-1.5.1        && sudo python setup.py install && cd ..
+cd virtualenvwrapper-2.6.1 && sudo python setup.py install && cd
+
+echo "
+export WORKON_HOME=~/Envs
+export VIRTUALENV_USE_DISTRIBUTE=1
+source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+

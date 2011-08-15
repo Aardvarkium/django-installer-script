@@ -1,0 +1,330 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tips and Tricks - virtualenvwrapper</title>
+
+<link rel="stylesheet" href="_static/default.css" 
+    type="text/css" />
+<style>
+    body {
+        margin: 8px;
+    }
+    .highlight {
+        background-color: white;
+        border: 0;
+    }
+    .highlight pre {
+        background-color: white;
+    }
+</style>
+
+<link href="/static/css/leaves.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    '#',
+      VERSION:     '2.6',
+      COLLAPSE_MODINDEX: false,
+      FILE_SUFFIX: '.html'
+  };
+</script>
+
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="contents" title="Global table of contents" href="contents.html" />
+    <link rel="index" title="Global index" href="genindex.html" />
+    <link rel="top" title="virtualenvwrapper v2.6 documentation" href="index.html" />
+    <link rel="next" title="For Developers" href="developers.html" />
+    <link rel="prev" title="Extending Virtualenvwrapper" href="plugins.html" />
+
+<meta name="verify-v1" content="5saTcOa2HLac4V85yUg3SARfun1PqT5Upu7IR/6fpv4="/>
+</head>
+<body>
+    
+<div id="container">
+    
+<div id="header">
+  <h1>Doug Hellmann</h1>
+  <p></p>
+  <a id="admin-link" href="/admin/">admin</a>
+</div>
+
+<div id="sidebar_left_wrapper">
+
+<div id="navigation"> 
+	<ul id="navlist">
+		<li><a href="/">Home</a></li>
+		<li><a href="/PyMOTW/">PyMOTW</a></li>
+		<li><a href="http://blog.doughellmann.com/" target="_">Blog</a></li>
+		<li><a href="/articles/">Articles</a></li>
+		<li><a href="/projects/">Projects</a></li>
+		<li><a href="http://code.doughellmann.com/" target="_">Code</a></li>
+		<li><a href="/about/">About</a></li>
+	</ul>
+</div>
+
+
+
+</div>
+
+<div id="sidebar">
+
+  <h3>Page Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">Tips and Tricks</a><ul>
+<li><a class="reference internal" href="#zsh-prompt">zsh Prompt</a></li>
+<li><a class="reference internal" href="#updating-cached-path-entries">Updating cached <tt class="docutils literal"><span class="pre">$PATH</span></tt> entries</a></li>
+<li><a class="reference internal" href="#tying-to-pip-s-virtualenv-support">Tying to pip&#8217;s virtualenv support</a></li>
+<li><a class="reference internal" href="#creating-project-work-directories">Creating Project Work Directories</a></li>
+<li><a class="reference internal" href="#automatically-run-workon-when-entering-a-directory">Automatically Run workon When Entering a Directory</a></li>
+<li><a class="reference internal" href="#installing-common-tools-automatically-in-new-environments">Installing Common Tools Automatically in New Environments</a></li>
+<li><a class="reference internal" href="#changing-the-default-behavior-of-cd">Changing the Default Behavior of <tt class="docutils literal"><span class="pre">cd</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+
+    <h3>Navigation</h3>
+    <a href="/docs/virtualenvwrapper/">Top</a><br/>
+
+      <a href="plugins.html" title="previous chapter">Previous: Extending Virtualenvwrapper</a><br/>
+      <a href="developers.html" title="next chapter">Next: For Developers</a><br/>
+
+    <a href="/projects/virtualenvwrapper/">virtualenvwrapper Home</a><br/>
+      <h3>This Page</h3>
+      <a href="_sources/tips.txt"
+               rel="nofollow">Show Source</a>
+      </ul>
+
+    <p>
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"><img alt="Creative Commons License" style="border-width:0; align: center;" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png"/></a>
+    </p>
+
+    
+    <p class="ads">
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-3205160560229413";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    google_ad_format = "120x600_as";
+    google_ad_type = "text";
+    //2007-10-27: www.doughellmann.com
+    google_ad_channel = "0828653884";
+    google_color_border = "FFFFFF";
+    google_color_bg = "FFFFFF";
+    google_color_link = "CC6714";
+    google_color_text = "000000";
+    google_color_url = "999999";
+    google_ui_features = "rc:0";
+    //-->
+    </script>
+    <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+    </p>
+
+</div>
+	  
+<div id="content">
+
+
+
+  <div class="section" id="tips-and-tricks">
+<span id="id1"></span><h1>Tips and Tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h1>
+<p>This is a list of user-contributed tips for making virtualenv and
+virtualenvwrapper even more useful.  If you have tip to share, drop me
+an email or post a comment on <a class="reference external" href="http://blog.doughellmann.com/2010/01/virtualenvwrapper-tips-and-tricks.html">this blog post</a>
+and I&#8217;ll add it here.</p>
+<div class="section" id="zsh-prompt">
+<h2>zsh Prompt<a class="headerlink" href="#zsh-prompt" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="http://www.blogger.com/profile/16779944428406910187">Nat</a>:</p>
+<p>Using zsh, I added some bits to <tt class="docutils literal"><span class="pre">$WORKON_HOME/post(de)activate</span></tt> to show
+the active virtualenv on the right side of my screen instead.</p>
+<p>in <tt class="docutils literal"><span class="pre">postactivate</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PS1</span><span class="o">=</span><span class="s">&quot;$_OLD_VIRTUAL_PS1&quot;</span>
+<span class="n">_OLD_RPROMPT</span><span class="o">=</span><span class="s">&quot;$RPROMPT&quot;</span>
+<span class="n">RPROMPT</span><span class="o">=</span><span class="s">&quot;%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename </span><span class="se">\&quot;</span><span class="s">$VIRTUAL_ENV</span><span class="se">\&quot;</span><span class="s">`%{${fg_bold[white]}%})%{${reset_color}%} $RPROMPT&quot;</span>
+</pre></div>
+</div>
+<p>and in <tt class="docutils literal"><span class="pre">postdeactivate</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">RPROMPT</span><span class="o">=</span><span class="s">&quot;$_OLD_RPROMPT&quot;</span>
+</pre></div>
+</div>
+<p>Adjust colors according to your own personal tastes or environment.</p>
+</div>
+<div class="section" id="updating-cached-path-entries">
+<h2>Updating cached <tt class="docutils literal"><span class="pre">$PATH</span></tt> entries<a class="headerlink" href="#updating-cached-path-entries" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="http://www.blogger.com/profile/16779944428406910187">Nat</a>:</p>
+<p>I also added the command &#8216;rehash&#8217; to <tt class="docutils literal"><span class="pre">$WORKON_HOME/postactivate</span></tt> and
+<tt class="docutils literal"><span class="pre">$WORKON_HOME/postdeactivate</span></tt> as I was having some problems with zsh
+not picking up the new paths immediately.</p>
+</div>
+<div class="section" id="tying-to-pip-s-virtualenv-support">
+<h2>Tying to pip&#8217;s virtualenv support<a class="headerlink" href="#tying-to-pip-s-virtualenv-support" title="Permalink to this headline">¶</a></h2>
+<p>Via <a class="reference external" href="http://becomingguru.com/">http://becomingguru.com/</a>:</p>
+<p>Add this to your shell login script to make pip use the same directory
+for virtualenvs as virtualenvwrapper:</p>
+<div class="highlight-python"><pre>export PIP_VIRTUALENV_BASE=$WORKON_HOME</pre>
+</div>
+<p>and Via Nat:</p>
+<p>in addition to what becomingguru said, this line is key:</p>
+<div class="highlight-python"><pre>export PIP_RESPECT_VIRTUALENV=true</pre>
+</div>
+<p>That makes pip detect an active virtualenv and install to it, without
+having to pass it the -E parameter.</p>
+</div>
+<div class="section" id="creating-project-work-directories">
+<h2>Creating Project Work Directories<a class="headerlink" href="#creating-project-work-directories" title="Permalink to this headline">¶</a></h2>
+<p>Via <a class="reference external" href="http://www.blogger.com/profile/02618224969192901883">James</a>:</p>
+<p>In the <tt class="docutils literal"><span class="pre">postmkvirtualenv</span></tt> script I have the following to create a
+directory based on the project name, add that directory to the python
+path and then cd into it:</p>
+<div class="highlight-python"><pre>proj_name=$(echo $VIRTUAL_ENV|awk -F'/' '{print $NF}')
+mkdir $HOME/projects/$proj_name
+add2virtualenv $HOME/projects/$proj_name
+cd $HOME/projects/$proj_name</pre>
+</div>
+<p>In the <tt class="docutils literal"><span class="pre">postactivate</span></tt> script I have it set to automatically change
+to the project directory when I use the workon command:</p>
+<div class="highlight-python"><pre>proj_name=$(echo $VIRTUAL_ENV|awk -F'/' '{print $NF}')
+cd ~/projects/$proj_name</pre>
+</div>
+</div>
+<div class="section" id="automatically-run-workon-when-entering-a-directory">
+<h2>Automatically Run workon When Entering a Directory<a class="headerlink" href="#automatically-run-workon-when-entering-a-directory" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://justinlilly.com/blog/2009/mar/28/virtualenv-wrapper-helper/">Justin Lily posted</a>
+about some code he added to his shell environment to look at the
+directory each time he runs <tt class="docutils literal"><span class="pre">cd</span></tt>.  If it finds a <tt class="docutils literal"><span class="pre">.venv</span></tt> file, it
+activates the environment named within.  On leaving that directory,
+the current virtualenv is automatically deactivated.</p>
+<p><a class="reference external" href="http://www.blogger.com/profile/17141199633387157732">Harry Marr</a>
+wrote a similar function that works with <a class="reference external" href="http://hmarr.com/2010/jan/19/making-virtualenv-play-nice-with-git/">git repositories</a>.</p>
+</div>
+<div class="section" id="installing-common-tools-automatically-in-new-environments">
+<h2>Installing Common Tools Automatically in New Environments<a class="headerlink" href="#installing-common-tools-automatically-in-new-environments" title="Permalink to this headline">¶</a></h2>
+<p>Via <a class="reference external" href="http://rizumu.myopenid.com/">rizumu</a>:</p>
+<p>I have this <tt class="docutils literal"><span class="pre">postmkvirtualenv</span></tt> to install the get a basic setup.</p>
+<div class="highlight-python"><pre>$ cat postmkvirtualenv
+#!/usr/bin/env bash
+curl -O http://python-distribute.org/distribute_setup.p... /&gt;python distribute_setup.py
+rm distribute_setup.py
+easy_install pip==dev
+pip install Mercurial</pre>
+</div>
+<p>Then I have a pip requirement file with my dev tools.</p>
+<div class="highlight-python"><pre>$ cat developer_requirements.txt
+ipdb
+ipython
+pastescript
+nose
+http://douglatornell.ca/software/python/Nosy-1.0.tar.gz
+coverage
+sphinx
+grin
+pyflakes
+pep8</pre>
+</div>
+<p>Then each project has it&#8217;s own pip requirement file for things like
+PIL, psycopg2, django-apps, numpy, etc.</p>
+</div>
+<div class="section" id="changing-the-default-behavior-of-cd">
+<h2>Changing the Default Behavior of <tt class="docutils literal"><span class="pre">cd</span></tt><a class="headerlink" href="#changing-the-default-behavior-of-cd" title="Permalink to this headline">¶</a></h2>
+<p>Via <a class="reference external" href="http://www.blogger.com/profile/10879711379090472478">mae</a>:</p>
+<p>This is supposed to be executed after workon, that is as a
+<tt class="docutils literal"><span class="pre">postactivate</span></tt> hook. It basically overrides <tt class="docutils literal"><span class="pre">cd</span></tt> to know about the
+VENV so instead of doing <tt class="docutils literal"><span class="pre">cd</span></tt> to go to <tt class="docutils literal"><span class="pre">~</span></tt> you will go to the venv
+root, IMO very handy and I can&#8217;t live without it anymore. if you pass
+it a proper path then it will do the right thing.</p>
+<div class="highlight-python"><pre>cd () {
+    if (( $# == 0 ))
+    then
+        builtin cd $VIRTUAL_ENV
+    else
+        builtin cd "$@"
+    fi
+}
+
+cd</pre>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="addthis"><a href="http://www.addthis.com/bookmark.php" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a><script type="text/javascript">var addthis_pub = "dhellmann";</script><script type="text/javascript" src="http://s7.addthis.com/js/widget.php?v=10"></script></div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_wrapper">
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/doughellmann/embed.js"></script><noscript><a href="http://doughellmann.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+
+<div id="footer_ads">
+
+    <p><script type="text/javascript"><!--
+    google_ad_client = "pub-3205160560229413";
+    google_ad_width = 728;
+    google_ad_height = 90;
+    google_ad_format = "728x90_as";
+    google_ad_type = "text";
+    //2007-10-21: www.doughellmann.com
+    google_ad_channel = "0828653884";
+    google_color_border = "FFFFFF";
+    google_color_bg = "FFFFFF";
+    google_color_link = "CC6714";
+    google_color_text = "000000";
+    google_color_url = "999999";
+    google_ui_features = "rc:0";
+    //-->
+    </script>
+    <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script></p>
+</div>
+
+<div id="footer">
+ 
+<p>
+    &copy; Copyright 2009, Doug Hellmann.
+   | Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+   | Design based on "Leaves" by <a href="http://smallpark.org">SmallPark</a>
+</p>
+   
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript" />
+<script type="text/javascript">
+  _uacct = "UA-1847381-1";
+  urchinTracker();
+</script>
+
+</div>
+
+</div>
+
+<!-- Disqus -->
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+		var links = document.getElementsByTagName('a');
+		var query = '?';
+		for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+		}
+		document.write('<script type="text/javascript" src="http://disqus.com/forums/doughellmann/get_num_replies.js' + query + '"></' + 'script>');
+	})();
+//]]>
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Para desarrolladores - virtualenvwrapper</title>
+
+<link rel="stylesheet" href="_static/default.css" 
+    type="text/css" />
+<style>
+    body {
+        margin: 8px;
+    }
+    .highlight {
+        background-color: white;
+        border: 0;
+    }
+    .highlight pre {
+        background-color: white;
+    }
+</style>
+
+<link href="/static/css/leaves.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    '#',
+      VERSION:     '2.6',
+      COLLAPSE_MODINDEX: false,
+      FILE_SUFFIX: '.html'
+  };
+</script>
+
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="contents" title="Global table of contents" href="contents.html" />
+    <link rel="index" title="Global index" href="genindex.html" />
+    <link rel="top" title="virtualenvwrapper v2.6 documentation" href="index.html" />
+    <link rel="next" title="Extensiones existentes" href="extensions.html" />
+    <link rel="prev" title="Consejos y Trucos" href="tips.html" />
+
+<meta name="verify-v1" content="5saTcOa2HLac4V85yUg3SARfun1PqT5Upu7IR/6fpv4="/>
+</head>
+<body>
+    
+<div id="container">
+    
+<div id="header">
+  <h1>Doug Hellmann</h1>
+  <p></p>
+  <a id="admin-link" href="/admin/">admin</a>
+</div>
+
+<div id="sidebar_left_wrapper">
+
+<div id="navigation"> 
+	<ul id="navlist">
+		<li><a href="/">Home</a></li>
+		<li><a href="/PyMOTW/">PyMOTW</a></li>
+		<li><a href="http://blog.doughellmann.com/" target="_">Blog</a></li>
+		<li><a href="/articles/">Articles</a></li>
+		<li><a href="/projects/">Projects</a></li>
+		<li><a href="http://code.doughellmann.com/" target="_">Code</a></li>
+		<li><a href="/about/">About</a></li>
+	</ul>
+</div>
+
+
+
+</div>
+
+<div id="sidebar">
+
+  <h3>Page Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">Para desarrolladores</a><ul>
+<li><a class="reference internal" href="#construir-la-documentacion">Construir la documentación</a></li>
+<li><a class="reference internal" href="#ejecutar-tests">Ejecutar tests</a></li>
+</ul>
+</li>
+</ul>
+
+
+    <h3>Navigation</h3>
+    <a href="/docs/virtualenvwrapper/">Top</a><br/>
+
+      <a href="tips.html" title="previous chapter">Previous: Consejos y Trucos</a><br/>
+      <a href="extensions.html" title="next chapter">Next: Extensiones existentes</a><br/>
+
+    <a href="/projects/virtualenvwrapper/">virtualenvwrapper Home</a><br/>
+      <h3>This Page</h3>
+      <a href="_sources/developers.txt"
+               rel="nofollow">Show Source</a>
+      </ul>
+
+    <p>
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"><img alt="Creative Commons License" style="border-width:0; align: center;" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png"/></a>
+    </p>
+
+    
+    <p class="ads">
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-3205160560229413";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    google_ad_format = "120x600_as";
+    google_ad_type = "text";
+    //2007-10-27: www.doughellmann.com
+    google_ad_channel = "0828653884";
+    google_color_border = "FFFFFF";
+    google_color_bg = "FFFFFF";
+    google_color_link = "CC6714";
+    google_color_text = "000000";
+    google_color_url = "999999";
+    google_ui_features = "rc:0";
+    //-->
+    </script>
+    <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+    </p>
+
+</div>
+	  
+<div id="content">
+
+
+
+  <div class="section" id="para-desarrolladores">
+<h1>Para desarrolladores<a class="headerlink" href="#para-desarrolladores" title="Permalink to this headline">¶</a></h1>
+<p>Si quieres contribuir con virtualenvwrapper directamente, estas instrucciones
+deberían ayudarte a empezar. Parches, reporte de bugs, y propuestas de
+características son todas bienvenidas a través del <a class="reference external" href="http://bitbucket.org/dhellmann/virtualenvwrapper/">sitio de BitBucket</a>. Contribuciones en la
+forma de parches o solicitud de <em>pull</em> son fáciles de integrar y recibirán
+prioridad en la atención.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Antes de contribuir con nuevas características al <em>core</em> de virtualenvwrapper,
+por favor considera, en vez, si no debe ser implementada como una extensión.</p>
+</div>
+<div class="section" id="construir-la-documentacion">
+<h2>Construir la documentación<a class="headerlink" href="#construir-la-documentacion" title="Permalink to this headline">¶</a></h2>
+<p>La documentación para virtualenvwrapper está escrita en reStructuredText y
+convertida a HTML usando Sphinx. La propia construcción es impulsada por make.
+Necesitas los siguientes paquetes para construir la documentación:</p>
+<ul class="simple">
+<li>Sphinx</li>
+<li>docutils</li>
+</ul>
+<p>Una vez que todas las herramientas están instaladas dentro de un virtualenv
+usando pip, ejecuta <tt class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></tt> para generar la versión de HTML de la
+documentación:</p>
+<div class="highlight-python"><pre>$ make html
+rm -rf virtualenvwrapper/docs
+(cd docs &amp;&amp; make html SPHINXOPTS="-c sphinx/pkg")
+sphinx-build -b html -d build/doctrees  -c sphinx/pkg source build/html
+Running Sphinx v0.6.4
+loading pickled environment... done
+building [html]: targets for 2 source files that are out of date
+updating environment: 0 added, 2 changed, 0 removed
+reading sources... [ 50%] command_ref
+reading sources... [100%] developers
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 33%] command_ref
+writing output... [ 66%] developers
+writing output... [100%] index
+
+writing additional files... search
+copying static files... WARNING: static directory '/Users/dhellmann/Devel/virtualenvwrapper/plugins/docs/sphinx/pkg/static' does not exist
+done
+dumping search index... done
+dumping object inventory... done
+build succeeded, 1 warning.
+
+Build finished. The HTML pages are in build/html.
+cp -r docs/build/html virtualenvwrapper/docs</pre>
+</div>
+<p>La versión de publicación de la documentación termina dentro de
+<tt class="docutils literal"><span class="pre">./virtualenvwrapper/docs</span></tt></p>
+</div>
+<div class="section" id="ejecutar-tests">
+<h2>Ejecutar tests<a class="headerlink" href="#ejecutar-tests" title="Permalink to this headline">¶</a></h2>
+<p>La suite de test para virtualenvwrapper usa <a class="reference external" href="http://shunit2.googlecode.com/">shunit2</a>. Para ejecutar los tests en bash, sh, y zsh,
+usa <tt class="docutils literal"><span class="pre">make</span> <span class="pre">test</span></tt>.</p>
+</div>
+</div>
+
+
+
+
+
+<div id="addthis"><a href="http://www.addthis.com/bookmark.php" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a><script type="text/javascript">var addthis_pub = "dhellmann";</script><script type="text/javascript" src="http://s7.addthis.com/js/widget.php?v=10"></script></div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_wrapper">
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/doughellmann/embed.js"></script><noscript><a href="http://doughellmann.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div>
+
+<div id="footer_ads">
+
+    <p><script type="text/javascript"><!--
+    google_ad_client = "pub-3205160560229413";
+    google_ad_width = 728;
+    google_ad_height = 90;
+    google_ad_format = "728x90_as";
+    google_ad_type = "text";
+    //2007-10-21: www.doughellmann.com
+    google_ad_channel = "0828653884";
+    google_color_border = "FFFFFF";
+    google_color_bg = "FFFFFF";
+    google_color_link = "CC6714";
+    google_color_text = "000000";
+    google_color_url = "999999";
+    google_ui_features = "rc:0";
+    //-->
+    </script>
+    <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script></p>
+</div>
+
+<div id="footer">
+ 
+<p>
+    &copy; Copyright 2009, Doug Hellmann.
+   | Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+   | Design based on "Leaves" by <a href="http://smallpark.org">SmallPark</a>
+</p>
+   
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript" />
+<script type="text/javascript">
+  _uacct = "UA-1847381-1";
+  urchinTracker();
+</script>
+
+</div>
+
+</div>
+
+<!-- Disqus -->
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+		var links = document.getElementsByTagName('a');
+		var query = '?';
+		for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+		}
+		document.write('<script type="text/javascript" src="http://disqus.com/forums/doughellmann/get_num_replies.js' + query + '"></' + 'script>');
+	})();
+//]]>
+</script>
+
+
+</body>
+</html>
